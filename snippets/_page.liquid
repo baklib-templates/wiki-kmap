@@ -1,0 +1,164 @@
+<article>
+  <div class="px-4 py-4 space-y-6 bg-white rounded-md shadow md lg:px-6 lg:py-6">
+    <h2 class="text-xl lg:text-3xl font-semibold text-gray-800">{{ page.settings.title }}</h2>
+    <div
+      class="flex flex-col items-start justify-start pb-2 my-2 space-y-2 md:flex-row md:space-y-0 md:space-x-4 md:items-center">
+      {% if site.settings.is_allow_published_at %}
+        <span class="flex items-center space-x-1">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-gray-500" fill="none" viewBox="0 0 24 24"
+            stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+          </svg>
+          <span class="block text-sm text-gray-600">{{ page.published_at | date: "%Y-%m-%d" }}</span>
+        </span>
+      {% endif %}
+      <span class="flex items-center space-x-1">
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-gray-500" fill="none" viewBox="0 0 24 24"
+          stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            d="M5 19a2 2 0 01-2-2V7a2 2 0 012-2h4l2 2h4a2 2 0 012 2v1M5 19h14a2 2 0 002-2v-5a2 2 0 00-2-2H9a2 2 0 00-2 2v5a2 2 0 01-2 2z" />
+        </svg>
+        <span class="block text-sm text-gray-600">{{ page.parent.link_text }}</span>
+      </span>
+      <span class="flex items-center space-x-1">
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-gray-500" fill="none" viewBox="0 0 24 24"
+          stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+        </svg>
+        <span class="block text-sm text-gray-600">{{ page.visits_count }} visits</span>
+      </span>
+    </div>
+    {% if false %}
+      <a href="#" class="relative block overflow-hidden rounded-lg group">
+        <img src="{{ 'images/demo/tim-van-der-kuip-CPs2X8JYmS8-unsplash.jpg' | asset_url }}" alt="Image placeholder"
+          class="object-cover w-full h-72">
+        <div
+          class="absolute inset-0 flex items-center justify-center transition-all duration-300 bg-gray-700 bg-opacity-0 group-hover:bg-opacity-60">
+          <div
+            class="inline-flex px-3 py-2 space-x-2 text-gray-100 duration-500 scale-50 bg-black bg-opacity-50 rounded-md opacity-0 group-hover:opacity-100 group-hover:scale-100">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24"
+              stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z">
+              </path>
+            </svg>
+            <span class="text-sm">View Image</span>
+          </div>
+        </div>
+      </a>
+    {% endif %}
+    <div class="space-y-6">
+      <div class="overflow-x-auto">
+        <div data-controller="view_images" class="ProseMirror break-words">
+          {{ page.settings.content }}
+        </div>
+      </div>
+    </div>
+    <!--/ post -->
+
+    <!-- tags -->
+    {% if page.settings.tags.size > 0 %}
+    <div class="pt-3 border-t border-gray-200">
+      <h3 class="text-base font-semibold text-gray-800"> {{ 'generic.tags' | t }}</h3>
+      <div class="flex items-center mt-3 space-x-4">
+        {% for tag in page.settings.tags %}
+          <a href="{{ tag.path }}" data-turbo="false" class="flex items-center space-x-1 py-1 rounded-lg hover:bg-gray-100">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-3 w-5 h-5 bg-gray-100 rounded-full p-1">
+              <path fill-rule="evenodd" d="M5.25 2.25a3 3 0 0 0-3 3v4.318a3 3 0 0 0 .879 2.121l9.58 9.581c.92.92 2.39 1.186 3.548.428a18.849 18.849 0 0 0 5.441-5.44c.758-1.16.492-2.629-.428-3.548l-9.58-9.581a3 3 0 0 0-2.122-.879H5.25ZM6.375 7.5a1.125 1.125 0 1 0 0-2.25 1.125 1.125 0 0 0 0 2.25Z" clip-rule="evenodd" />
+            </svg>
+            <span class="inner-block text-sm text-gray-600">{{ tag.name }}</span>
+          </a>
+        {% endfor %}
+      </div>
+    </div>
+    {% endif %}
+    <!--/ tags -->
+
+    {% if false %}
+      <!-- reaction options -->
+      <div class="flex pt-2 space-x-3">
+
+        <button type="button"
+          class="flex items-center space-x-1 text-gray-600 duration-500 hover:text-blue-600">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24"
+            stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z">
+            </path>
+          </svg>
+          <span class="text-sm font-semibold">Share</span>
+        </button>
+
+        <button type="button"
+          class="flex items-center space-x-1 text-gray-600 duration-500 hover:text-blue-600">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24"
+            stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path>
+          </svg>
+          <span class="text-sm font-semibold">Download</span>
+        </button>
+      </div>
+      <!--/ reaction options -->
+
+      <!-- leave comment -->
+      <div class="flex items-center col-span-1 pt-3 space-x-3">
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-12 h-12 rounded-full" fill="none" viewBox="0 0 24 24"
+          stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            d="M14 10h4.764a2 2 0 011.789 2.894l-3.5 7A2 2 0 0115.263 21h-4.017c-.163 0-.326-.02-.485-.06L7 20m7-10V5a2 2 0 00-2-2h-.095c-.5 0-.905.405-.905.905 0 .714-.211 1.412-.608 2.006L7 11v9m7-10h-2M7 20H5a2 2 0 01-2-2v-6a2 2 0 012-2h2.5">
+          </path>
+        </svg>
+        <div class="flex-1">
+          <input type="text"
+            class="w-full px-4 py-4 text-sm placeholder-gray-400 border border-gray-200 rounded-md"
+            placeholder="Leave a comment">
+        </div>
+      </div>
+      <!--/ leave comment -->
+    {% endif %}
+
+  </div>
+</article>
+
+<!-- 上下页 -->
+<div class="items-center justify-between py-2 sm:py-4 xl:py-6 space-y-3 lg:flex lg:space-y-0 lg:space-x-4 print:hidden">
+  <!-- Prev link -->
+  <a href="{{ page.prev_page.path }}" 
+    class="block w-full bg-white p-3 text-left border rounded-md hover:bg-primary-50 lg:w-1/2 border-slate-200 dark:border-gray-700">
+    <div class="mb-2 text-gray-400">{{ 'generic.prev_page' | t}}</div>
+    <div class="text-primary">
+      <div
+        class="flex items-center space-x-2 line-clamp-1"
+      >
+        {% if page.prev_page %}
+          <svg t="1697772474680" class="w-4 h-4 icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="13457" >
+            <path d="M724 218.3V141c0-6.7-7.7-10.4-12.9-6.3L260.3 486.8c-16.4 12.8-16.4 37.5 0 50.3l450.8 352.1c5.3 4.1 12.9 0.4 12.9-6.3v-77.3c0-4.9-2.3-9.6-6.1-12.6l-360-281 360-281.1c3.8-3 6.1-7.7 6.1-12.6z" p-id="13458" fill="currentColor"></path>
+          </svg>
+          <span class="line-clamp-1">{{ page.prev_page.link_text }}</span>
+        {% else %}
+          <span class="text-slate-400 dark:text-slate-500">{{ 'generic.empty' | t}}</span>
+        {% endif %}
+      </div>
+    </div>
+  </a>
+  <!-- Next link -->
+  <a href="{{ page.next_page.path }}" 
+    class="block w-full bg-white p-3 text-left border rounded-md lg:text-right hover:bg-primary-50 lg:w-1/2 border-slate-200 dark:border-gray-700">
+    <div class="mb-2 text-gray-400">{{ 'generic.next_page' | t}}</div>
+    <div class="text-primary">
+      <div class="flex items-center space-x-2 lg:justify-end line-clamp-1">
+        {% if page.next_page %}
+          <span class="line-clamp-1">{{ page.next_page.link_text }}</span>
+          <svg t="1697772474680" class="w-4 h-4 rotate-180 icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="13457" >
+            <path d="M724 218.3V141c0-6.7-7.7-10.4-12.9-6.3L260.3 486.8c-16.4 12.8-16.4 37.5 0 50.3l450.8 352.1c5.3 4.1 12.9 0.4 12.9-6.3v-77.3c0-4.9-2.3-9.6-6.1-12.6l-360-281 360-281.1c3.8-3 6.1-7.7 6.1-12.6z" p-id="13458" fill="currentColor"></path>
+          </svg>
+        {% else %}
+          <span class="text-slate-400 dark:text-slate-500">{{ 'generic.empty' | t}}</span>
+        {% endif %}
+      </div>
+    </div>
+  </a>
+</div>

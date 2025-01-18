@@ -1,0 +1,138 @@
+{% assign default_icon = 'images/icon.svg' | asset_url %}
+{% assign default_hero = 'images/demo/nick-perez-B0-hISGx8I8-unsplash.jpg' | asset_url %}
+
+{% assign card_pages = site.pages['/'].children_in_nav_menu  | limit: 24 %}
+
+<main class="flex flex-row min-h-screen relative">
+
+  {% if page.settings.bg_type.value == '2' %}
+    <div class="absolute inset-x-0 overflow-hidden -top-10 -z-10 transform-gpu blur-3xl sm:-top-80" aria-hidden="true">
+      <div class="relative left-[calc(50%-11rem)] aspect-[1200/800] w-[36.125rem] -translate-x-1/2 rotate-[30deg] bg-gradient-to-tr from-primary to-secondary opacity-30 sm:left-[calc(50%-20rem)] sm:w-[82.1875rem]" style="clip-path: polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)"></div>
+    </div>
+  {% elsif page.settings.bg_type.value == '1' %}
+    <div class="absolute w-full h-full -z-10 bg-gradient-to-b from-primary/35 from-5% via-gray-100 via-20% to-accent/35 to-85% dark:from-primary dark:to-accent"></div>
+  {% else %}
+    <div class="absolute w-full h-full -z-10 bg-gradient-to-b from-gray-100 from-5% via-gray-100 via-20% to-gray-100 to-85% dark:from-primary dark:to-accent"></div>
+  {% endif %}
+  <!-- Hero Section -->
+  
+  {% if site.settings.is_allow_aside %}
+    {% render 'aside', page: page %}
+  {% endif  %}
+
+  <div class="flex-1 w-0">
+    {% render 'header' %}
+    <div class="flex flex-col px-6 py-8 mx-auto space-y-6 max-w-screen-2xl xl:px-12">
+      <div class="relative overflow-hidden bg-white rounded-md shadow-sm shadow-gray-200 sm:h-32 md:h-48 lg:h-72">
+        <div class="relative h-full overflow-hidden shadow-sm shadow-gray-200 rounded-t-md">
+          <img src="{{ page.settings.hero_image_url | default: default_hero }}" alt="{{site.name}} image cover" class="object-cover w-full ">
+          <div class="absolute inset-0 w-full bg-gradient-to-t from-gray-700 bg-opacity-10">&nbsp;</div>
+        </div>
+        <div class="absolute z-20 flex flex-col items-start justify-start px-4 bottom-6 lg:px-8">
+          <h2 class="text-2xl lg:text-3xl font-semibold text-white">{{ page.settings.slogan }}</h2>
+          <span class="block text-sm font-semibold transition-colors duration-300 text-gray-50">
+            {{ page.settings.description }}
+          </span>
+        </div>
+      </div>
+      <article class="flex-1 px-4 pt-6 pb-8 bg-white rounded-md shadow-sm shadow-gray-200 lg:pb-10 lg:pt-8 lg:px-6">
+        <div class="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-4 lg:gap-y-12">
+          {% for card_page in card_pages %}
+            <div>
+              <h3 class="mb-4 text-base font-semibold text-gray-800">{{ card_page.link_text }}</h3>
+              <ul class="space-y-3 text-sm font-semibold text-blue-600">
+                {% assign limit_page_count = page.settings.index_card_page_count | default: 5 %}
+                {% assign sub_pages = card_page.children_in_list | limit: limit_page_count %}
+                {% for sub_page in sub_pages %}
+                  <li>
+                    <a href="{{ sub_page.path }}" class="hover:underline">{{ sub_page.link_text }}</a>
+                  </li>
+                {% endfor %}
+              </ul>
+            </div>
+          {% endfor %}
+        </div>
+      </article>
+      {% if page.settings.features_html %}
+        {{ page.settings.features_html }}
+      {% else %}
+        <div class="text-center">
+          <h2 class="text-xl font-semibold text-center text-gray-800 lg:text-2xl">Want to work for us?</h2>
+          <p class="mt-2 text-sm text-center text-gray-700">When, while the lovely valley teems with vapour around me
+          </p>
+          <a href=""
+            class="inline-flex self-center px-4 py-3 mt-6 text-sm font-semibold leading-4 transition-colors duration-300 bg-primary rounded-md hover:bg-primary-700 text-primary-50">
+            Contact with our Support</a>
+        </div>
+      {% endif %}
+    </div>
+    {% render 'footer' %}
+  </div>
+</main>
+
+{% schema %}
+  {
+    "name": "Sitemap",
+    "description": "Sitemap dashboard index",
+    "thumb_url": "images/theme/sitemap.png",
+    "preview_image_urls": [
+      "images/theme/sitemap.png"
+    ],
+    "sub_page_templates": ["page"],
+    "settings": [
+        {
+          "id": "hero_image_url",
+          "type": "image_picker",
+          "ratio": "19:6",
+          "width": 900,
+          "label": "t:settings_schema.generic.settings.hero_image_url.label",
+          "info": "t:settings_schema.generic.settings.hero_image_url.info"
+        },
+        {
+          "id": "bg_type",
+          "type": "radio",
+          "label": "背景颜色样式",
+          "choices": [{"label":"灰色","value":"0"},{"label":"primary主色渐变","value":"1"},{"label":"primary+secondary变体渐变","value":"2"}],
+          "default": "0",
+          "info": "*  跟随站点【主题颜色】设置的 primary/secondary 颜色"
+        },
+        {
+          "id": "slogan",
+          "type": "text",
+          "label": "站点首页口号",
+          "default": "Frequently Asked Questions"
+        },
+        {
+          "id": "description",
+          "type": "textarea",
+          "label": "站点首页一句话描述",
+          "default": "👋 What Can We Help?"
+        },
+        {
+          "id": "tags",
+          "type": "tag_picker",
+          "multiple": true,
+          "label": "t:settings_schema.page.settings.tags.label",
+          "info": "设置以后，标签列表会显示在首页搜索栏下方"
+        },
+        {
+          "id": "index_card_page_count",
+          "type": "number",
+          "min": 1,
+          "max": 20,
+          "step": 1,
+          "default": 5,
+          "label": "首页列表展示页面数量",
+          "info": ""
+        },
+        {
+          "id": "features_html",
+          "type": "html",
+          "label": "自定义 HTML块",
+          "info": "显示在列表页脚部分",
+          "rows": 3,
+          "placeholder": "<div>...</div>"
+        }
+      ]
+  }
+{% endschema %}

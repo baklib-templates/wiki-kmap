@@ -1,0 +1,109 @@
+{% assign default_icon = 'images/icon.svg' | asset_url %}
+{% assign default_hero = 'images/demo/jason-goodman-6awfTPLGaCE-unsplash.jpg' | asset_url %}
+{% assign card_pages = site.pages['/'].children_in_nav_menu  | limit: 24 %}
+
+<main class="flex flex-row bg-gray-100">
+
+  {% if site.settings.is_allow_aside %}
+    {% render 'aside', page: page %}
+  {% endif  %}
+
+  <div class="flex-1">
+
+    <section class="flex flex-col justify-between">
+      {% render 'header' %}
+
+      <div class="px-6 py-8 mx-auto space-y-6 max-w-screen-2xl xl:px-12">
+        <article
+          class="w-full px-4 pt-6 pb-8 space-y-6 bg-white rounded-md shadow-sm shadow-gray-200 lg:pb-10 lg:pt-10 lg:px-6">
+          <img src="{{ page.settings.hero_image_url | default: default_hero }}" alt="{{site.name}} image cover" class="object-cover w-full rounded-lg shadow lg:shadow-lg max-h-96">
+          <div class="max-w-screen-md pt-6 mx-auto text-center">
+            <h2 class="mb-3 text-xl font-semibold text-gray-800 lg:text-2xl">{{ page.settings.slogan }}</h2>
+            <p class="text-sm text-gray-700">{{ page.settings.description }}</p>
+          </div>
+
+          <div class="grid grid-cols-1 gap-4 md:gap-6 lg:grid-cols-3 md:grid-cols-2 xl:grid-cols-5">
+            {% for item in card_pages %}
+              <div class="flex flex-col items-center justify-center px-4 pt-6 pb-8 lg:px-6 lg:pt-8 lg:pb-10">
+                {% if item.settings.icon %}
+                  <img src="{{ item.settings.icon }}"
+                    class="w-24 h-24 mb-3 border-2 border-white rounded-lg shadow-sm shadow-gray-200"
+                    alt="{{ item.link_text }}">
+                {% else %}
+                  <div class="flex items-center justify-center w-24 h-24 mb-3 font-bold text-primary bg-primary-100 border-2 border-white rounded-lg shadow-sm shadow-gray-200">
+                    {{ item.link_text | slice: 0,2 }}
+                  </div>
+                {% endif %}
+                <a href="{{ item.path }}" class="text-base font-semibold text-gray-800">{{ item.link_text }}</a>
+                <span class="block text-sm ">{{ item.settings.description }}</span>
+              </div>
+            {% endfor %}
+            
+          </div>
+          {% if page.settings.features_html %}
+            {{ page.settings.features_html }}
+          {% else %}
+            <div class="text-center">
+              <h2 class="text-xl font-semibold text-center text-gray-800 lg:text-2xl">Want to work for us?</h2>
+              <p class="mt-2 text-sm text-center text-gray-700">When, while the lovely valley teems with vapour around me
+              </p>
+              <a href=""
+                class="inline-flex self-center px-4 py-3 mt-6 text-sm font-semibold leading-4 transition-colors duration-300 bg-primary rounded-md hover:bg-primary-700 text-primary-50">
+                Contact with our Support</a>
+            </div>
+          {% endif %}
+        </article>
+      </div>
+
+      {% render 'footer' %}
+    </section>
+  </div>
+</main>
+
+{% schema %}
+  {
+    "name": "Teams",
+    "description": "team index with icon",
+    "thumb_url": "images/theme/team.png",
+    "preview_image_urls": [
+      "images/theme/team.png"
+    ],
+    "sub_page_templates": ["page"],
+    "settings": [
+        {
+          "id": "hero_image_url",
+          "type": "image_picker",
+          "ratio": "19:6",
+          "width": 900,
+          "label": "t:settings_schema.generic.settings.hero_image_url.label",
+          "info": "t:settings_schema.generic.settings.hero_image_url.info"
+        },
+        {
+          "id": "slogan",
+          "type": "text",
+          "label": "站点首页口号",
+          "default": "Frequently Asked Questions"
+        },
+        {
+          "id": "description",
+          "type": "textarea",
+          "label": "站点首页一句话描述",
+          "default": "👋 What Can We Help?"
+        },
+        {
+          "id": "tags",
+          "type": "tag_picker",
+          "multiple": true,
+          "label": "t:settings_schema.page.settings.tags.label"
+        },
+        {
+          "id": "features_html",
+          "type": "html",
+          "label": "自定义 HTML块",
+          "info": "显示在列表页脚部分",
+          "rows": 3,
+          "placeholder": "<div>...</div>"
+        }
+      ]
+  }
+{% endschema %}

@@ -1,0 +1,111 @@
+{% assign default_icon = 'images/icon.svg' | asset_url %}
+
+{% comment %} 左侧 NavBar只显示当前父级栏目，具体做法： nav_tree_path 添加一个 parent 参数即可。 {% endcomment %}
+{% unless page.parent.path == '/' %}
+  {% assign parent = page.parent %}
+{% else %}
+  {% assign parent = page %}
+{% endunless %}
+
+{% assign sub_pages = page.children_in_list %}
+{% assign sub_pages_size = sub_pages | size %}
+{% assign default_avatar_url = 'images/avatar.svg' | asset_url %}
+
+{% comment %} 页面内容部分 {% endcomment %}
+<main class="flex flex-row min-h-screen bg-gray-100">
+  {% if site.settings.is_allow_aside %}
+    {% render 'aside', page: page %}
+  {% endif  %}
+
+  <div class="flex-1 w-0">
+    {% render 'header' %}
+    
+    <turbo-frame id="main-content" data-turbo-action="advance" :class="">
+      <div class="max-w-screen-xl px-0 sm:px-6 py-4 mx-auto space-y-6 xl:px-12 xl:py-8">
+
+        {% if false %}
+          <div class="relative overflow-hidden bg-white rounded-md shadow-sm shadow-gray-200">
+            <div class="relative h-24 overflow-hidden shadow-sm shadow-gray-200 rounded-t-md sm:h-32 md:h-48">
+              <img src="{{ 'images/demo/tim-mossholder-bo3SHP58C3g-unsplash.jpg' | asset_url }}" alt="image cover" class="w-full">
+              <div class="absolute inset-0 w-full bg-gradient-to-t from-gray-700 bg-opacity-10">&nbsp;</div>
+              <div class="absolute left-0 z-20 flex flex-col items-start justify-start px-4 bottom-6 lg:px-8">
+                <h2 class="text-lg lg:text-2xl font-semibold text-white">{{ site.name  }}</h2>
+                <span
+                  class="block text-xs font-semibold tracking-wider uppercase transition-colors duration-300 text-gray-50 ">We'are
+                  here to help you</span>
+              </div>
+            </div>
+            <div class="overflow-x-auto">
+              <nav class="flex items-center px-4 py-4 space-x-1 text-sm font-semibold text-gray-700 lg:px-6">
+                <a href="#"
+                  class="flex items-center justify-center px-4 py-3 -ml-2 rounded-full hover:bg-gray-100">Overview</a>
+                <a href="#" class="flex items-center justify-center px-4 py-3 rounded-full hover:bg-gray-100">Your
+                  questions</a>
+                <a href="#" class="flex items-center justify-center px-4 py-3 rounded-full hover:bg-gray-100">Licenses</a>
+                <a href="#"
+                  class="flex items-center justify-center px-4 py-3 text-blue-600 bg-gray-100 rounded-full hover:bg-gray-10 ">FAQ</a>
+                <a href="#" class="flex items-center justify-center px-4 py-3 rounded-full hover:bg-gray-100">Tickets</a>
+                <a href="#" class="flex items-center justify-center px-4 py-3 rounded-full hover:bg-gray-100">Contact</a>
+              </nav>
+            </div>
+          </div>
+        {% endif %}
+
+        <div class="bg-transparent px-2">
+          {% render 'breadcrumb', page: page, breadcrumb: page.breadcrumb  %}
+        </div>
+        {% render 'page_list', page: page, pages: sub_pages %}
+      </div>
+    </turbo-frame>
+    
+  </div>
+  
+</main>
+
+{% render 'footer', settings: site.settings %}
+
+
+{% schema %}
+  {
+    "name": "Channel Page",
+    "description": "a channel page list",
+    "thumb_url": "images/theme/page-channel.png",
+    "sub_page_templates": ["page"],
+    "settings": [
+      {
+        "id": "title",
+        "type": "text",
+        "readonly": true,
+        "label": "标题",
+        "info": "知识库同步，不可编辑"
+      },
+      {
+        "id": "tags",
+        "type": "tag_picker",
+        "multiple": true,
+        "label": "t:settings_schema.page.settings.tags.label"
+      },
+      {
+        "id": "description",
+        "type": "textarea",
+        "label": "t:settings_schema.page.settings.description.label"
+      },
+      {
+        "id": "icon",
+        "type": "image_picker",
+        "ratio": "1:1",
+        "width": 100,
+        "label": "t:settings_schema.page.settings.icon.label",
+        // "required": true, 如果必填就用这个参数
+        "info": "t:settings_schema.page.settings.icon.info"
+      },
+      {
+        "id": "content",
+        "type": "richtext",
+        "label": "t:settings_schema.page.settings.content.label",
+        "readonly": true,
+        "info": "t:settings_schema.page.settings.content.info"
+      }
+    ]
+  }
+{% endschema %}

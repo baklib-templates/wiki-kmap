@@ -1,0 +1,20 @@
+{% assign default_icon = "images/demo/project-icon1.png" | asset_url %}
+{% assign recent_pages = site.pages['/'].pages_in_list | order_by: '-visit_count' | limit: 6 %}
+
+<div class="px-4 pt-6 pb-8 border-t border-gray-200 lg:px-6">
+  <h3 class="text-base font-semibold text-gray-800 ">{{ 'generic.recent_pages' | t}}</h3>
+  <div class="grid grid-cols-1 gap-6 mt-6 lg:grid-cols-3">
+    {% for item in recent_pages %}
+      {% assign desc = item.settings.content | strip_html | truncate: 80  %}
+      <!-- row -->
+      <div class="flex space-x-4">
+        <img src="{{ item.settings.icon | default: default_icon }}" class="w-16 h-16 rounded-md" alt="{{ item.link_text }}">
+        <a href="{{ item.path }}" class="rounded-lg hover:bg-gray-100">
+          <span class="text-sm font-semibold text-gray-800">{{ item.link_text }}</span>
+          <span class="block mb-1 text-sm text-gray-600">{{ item.settings.description | default: desc }}</span>
+          <span class="block text-xs font-semibold text-blue-600">{{ 'generic.read_more' | t }}</span>
+        </a>
+      </div>
+    {% endfor %}
+  </div>
+</div>

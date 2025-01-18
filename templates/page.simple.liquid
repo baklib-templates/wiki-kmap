@@ -1,0 +1,81 @@
+{% assign default_icon = 'images/icon.svg' | asset_url %}
+{% assign sub_pages = page.children_in_list %}
+{% assign sub_pages_size = sub_pages | size %}
+
+{% comment %} 页面内容部分 {% endcomment %}
+<main class="flex flex-row min-h-screen bg-gray-100">
+  {% if site.settings.is_allow_aside %}
+    {% render 'aside', page: page %}
+  {% endif  %}
+
+  <div class="flex-1 w-0">
+    {% render 'header' %}
+    
+    <turbo-frame id="main-content" data-turbo-action="advance" :class="">
+      <div class="px-0 py-0 sm:px-6 sm:py-8 mx-auto space-y-6 max-w-screen-2xl xl:px-12">
+        <article class="w-full px-2 pt-6 pb-8 space-y-6 bg-white rounded-md shadow-sm shadow-gray-200 lg:pb-10 lg:pt-10 lg:px-6">
+          <div class="max-w-screen-md mx-auto">
+            <h2 class="text-2xl font-semibold text-center text-gray-800 md:text-3xl xl:text-4xl">{{ page.settings.title }}</h2>
+            <p class="my-4 text-sm text-center text-gray-600">{{ page.settings.description }}</p>
+          </div>
+          <img src="{{ page.settings.icon }}" alt="image cover" class="object-cover w-full rounded-lg shadow lg:shadow-lg max-h-96">
+          <div class="max-w-screen-sm pt-6 mx-auto space-y-6 text-sm text-gray-700">
+            <div class="overflow-x-auto">
+              <div data-controller="view_images" class="ProseMirror break-words">
+                {{ page.settings.content }}
+              </div>
+            </div>
+          </div>
+        </article>
+      </div>
+    </turbo-frame>
+
+    {% render 'footer', settings: site.settings %}
+  </div>
+</main>
+
+
+{% schema %}
+  {
+    "name": "Page Simple",
+    "description": "a page single simple template",
+    "thumb_url": "images/theme/page-simple.png",
+    "sub_page_templates": ["page"],
+    "settings": [
+      {
+        "id": "title",
+        "type": "text",
+        "readonly": true,
+        "label": "标题",
+        "info": "知识库同步，不可编辑"
+      },
+      {
+        "id": "tags",
+        "type": "tag_picker",
+        "multiple": true,
+        "label": "t:settings_schema.page.settings.tags.label"
+      },
+      {
+        "id": "description",
+        "type": "textarea",
+        "label": "t:settings_schema.page.settings.description.label"
+      },
+      {
+        "id": "icon",
+        "type": "image_picker",
+        "ratio": "1:1",
+        "width": 100,
+        "label": "t:settings_schema.page.settings.icon.label",
+        // "required": true, 如果必填就用这个参数
+        "info": "t:settings_schema.page.settings.icon.info"
+      },
+      {
+        "id": "content",
+        "type": "richtext",
+        "label": "t:settings_schema.page.settings.content.label",
+        "readonly": true,
+        "info": "t:settings_schema.page.settings.content.info"
+      }
+    ]
+  }
+{% endschema %}

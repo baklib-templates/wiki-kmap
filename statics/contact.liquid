@@ -1,0 +1,99 @@
+
+  <main class="flex flex-row min-h-screen bg-gray-100">
+    <div class="flex">
+  
+    </div>
+    <div class="flex-1 w-0">
+      <header class="shadow-sm shadow-gray-200">
+        <div class="flex justify-end px-6 py-3 bg-white border-b border-gray-200 sm:justify-between xl:px-12">
+          <nav class="items-center flex-1 hidden mx-auto space-x-2 text-sm text-gray-700 sm:flex">
+            <a href="#" class="px-3 py-2 font-medium text-gray-700 bg-gray-100 rounded-md ">Dashboard</a>
+            <a href="#"
+              class="px-3 py-2 transition-colors duration-300 bg-white rounded-md hover:bg-gray-100 hover:text-blue-600">Pages</a>
+            <a href="#"
+              class="px-3 py-2 transition-colors duration-300 bg-white rounded-md hover:bg-gray-100 hover:text-blue-600">Support</a>
+            <a href="#"
+              class="px-3 py-2 transition-colors duration-300 bg-white rounded-md hover:bg-gray-100 hover:text-blue-600">Profile</a>
+            <a href="#"
+              class="px-3 py-2 transition-colors duration-300 bg-white rounded-md hover:bg-gray-100 hover:text-blue-600">Contact</a>
+          </nav>
+          <div>
+            <button>
+              <img src="{{ 'images/demo/user.jpg' | asset_url }}" alt="Image placeholder" class="w-10 h-10 rounded-full">
+            </button>
+          </div>
+        </div>
+      </header>
+      <div class="px-6 py-8 mx-auto space-y-6 max-w-screen-2xl xl:px-12">
+        <div class="relative overflow-hidden bg-white rounded-md shadow-sm shadow-gray-200 sm:h-32 md:h-48 lg:h-72">
+          <div class="relative h-full overflow-hidden shadow-sm shadow-gray-200 rounded-t-md">
+            <img src="{{ 'images/demo/ant-rozetsky-HXOllTSwrpM-unsplash.jpg' | asset_url }}" alt="image cover"
+              class="object-cover w-full ">
+          </div>
+        </div>
+        <article
+          class="w-full px-4 pt-6 pb-8 space-y-6 bg-white rounded-md shadow-sm shadow-gray-200 lg:pb-10 lg:pt-10 lg:px-6">
+          <div class="grid grid-cols-1 gap-6 lg:grid-cols-2 lg:gap-12">
+            <div>
+              <h2 class="text-xl font-semibold text-gray-800 lg:text-2xl">Contact us</h2>
+              <p class="mt-2 text-sm font-semibold text-gray-700">When, while the lovely valley teems w and the meridian
+                sun strikes the upper surface of the impenetrable foliage of my trees.</p>
+              <form action="#" class="block max-w-4xl mx-auto mt-6 space-y-4">
+                <div class="grid grid-cols-2 gap-6">
+                  <div class="space-y-2">
+                    <div class="w-full pt-1">
+                      <label for="title" class="block text-sm font-semibold text-gray-700">Name</label>
+                    </div>
+                    <div class="flex-1">
+                      <input type="text" name="title" id="title" value="" placeholder="Enter your name"
+                        class="w-full text-sm border-gray-300 rounded-md">
+                    </div>
+                  </div>
+                  <div class="space-y-2">
+                    <div class="w-full pt-1">
+                      <label for="email" class="block text-sm font-semibold text-gray-700">Email</label>
+                    </div>
+                    <div class="flex-1">
+                      <input type="email" name="email" id="email" value="" placeholder="Email address"
+                        class="w-full text-sm border-gray-300 rounded-md">
+                    </div>
+                  </div>
+                </div>
+                <div class="space-y-2">
+                  <div class="w-full pt-1">
+                    <label for="subject" class="block text-sm font-semibold text-gray-700">Subject</label>
+                  </div>
+                  <div class="flex-1">
+                    <input type="text" name="subject" id="subject" value="" placeholder=""
+                      class="w-full text-sm border-gray-300 rounded-md">
+                  </div>
+                </div>
+                <div class="space-y-2">
+                  <div class="w-full pt-1">
+                    <label for="title" class="block text-sm font-semibold text-gray-700">Your message</label>
+                  </div>
+                  <div class="flex-1">
+                    <textarea name="description" id="description" cols="30" rows="6"
+                      class="w-full text-sm border-gray-300 rounded-md"></textarea>
+                  </div>
+                </div>
+                <button
+                  class="flex px-4 py-3 text-sm font-semibold leading-4 transition-colors duration-300 bg-blue-600 rounded-md hover:bg-blue-700 text-blue-50">
+                  <span>
+                    Send a message
+                  </span>
+                </button>
+              </form>
+            </div>
+            <div>
+              <div class="w-full"><iframe width="100%" height="600" frameborder="0" scrolling="no" marginheight="0"
+                  marginwidth="0"
+                  src="https://maps.google.com/maps?width=100%25&amp;height=600&amp;hl=nl&amp;q=Spuistraat%20210,%201012%20VT%20Amsterdam,%20Netherlands+(Mijn%20bedrijfsnaam)&amp;t=&amp;z=14&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"><a
+                    href="https://www.mapsdirections.info/nl/cirkel-straal-kaart/">Bereken de straal</a></iframe></div>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </main>
+

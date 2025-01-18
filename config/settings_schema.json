@@ -1,0 +1,149 @@
+[
+  {
+    "name": "theme_info",
+    "theme_name": "kmap",
+    "theme_label": "t:theme_label",
+    "theme_version": "1.1.0",
+    "theme_scope": "wiki",
+    "theme_author": "Baklib",
+    "theme_description": "t:theme_description",
+    "theme_documentation_url": "https://help.baklib.cn/themes/kmap",
+    "theme_support_url": "https://help.baklib.cn/themes/kmap/settings",
+    "theme_thumb_url": "images/theme/thumb.png",
+    "theme_preview_images": [
+      "images/theme/sitemap.png",
+      "images/theme/team.png",
+      "images/theme/pages.png",
+      "images/theme/page.png",
+      "images/theme/page-simple.png",
+      "images/theme/page-side.png",
+      "images/theme/contact.png"
+    ],
+    "theme_languages": [
+      {
+        "name": "中文简体",
+        "value": "zh-CN"
+      },
+      {
+        "name": "English",
+        "value": "en-US"
+      }
+    ],
+    "recommendations": {
+      "color_schemas": {
+        "fashion": {
+          "name": "时尚",
+          "colors": {
+            "--theme-color-primary": "#03A9F4",
+            "--theme-color-secondary": "#E91E63",
+            "--theme-color-accent": "#AAAAAA",
+            "--theme-color-info": "#2196F3",
+            "--theme-color-success": "#4CAF50",
+            "--theme-color-warning": "#FFC107"
+          }
+        },
+        "old_school": {
+          "name": "复古",
+          "colors": {
+            "--theme-color-primary": "#9C27B0",
+            "--theme-color-secondary": "#673AB7",
+            "--theme-color-accent": "#AAAAAA",
+            "--theme-color-info": "#418CC8",
+            "--theme-color-success": "#29B52F",
+            "--theme-color-warning": "#FFC107"
+          }
+        }
+      }
+    }
+  },
+  {
+    "name": "t:settings_schema.generic.name",
+    "settings": [
+      {
+        "id": "logo_url",
+        "type": "image_picker",
+        "ratio": "3:1",
+        "width": 150,
+        "label": "t:settings_schema.generic.settings.logo_url.label",
+        "info": "若设置了logo，则页头显示 logo，否则显示：网站图标+站点名称"
+      },
+      {
+        "id": "contact_url",
+        "type": "text",
+        "label": "[联系我们]按钮 URL",
+        "default": "https://www.baklib.cn/about",
+        "info": "如果不希望显示按钮则不填内容"
+      },
+      {
+        "id": "company_name",
+        "label": "t:settings_schema.generic.settings.company_name.label",
+        "type": "text",
+        "default": "t:settings_schema.generic.settings.company_name.default",
+        "info": "显示在页面底部页脚位置"
+      },
+      {
+        "id": "copyright_info",
+        "type": "text",
+        "label": "t:settings_schema.generic.settings.copyright_info.label",
+        "default": "t:settings_schema.generic.settings.copyright_info.default"
+      },
+      {
+        "id": "is_allow_aside",
+        "type": "checkbox",
+        "label": "是否展示左侧边栏导航",
+        "info": "开启后每个页面都有左侧边栏",
+        "default": false
+      }
+    ]
+  },
+  {
+    "name": "t:settings_schema.generic.header_name",
+    "settings": [
+      {
+        "id": "header_menu_html",
+        "type": "html",
+        "label": "t:settings_schema.generic.settings.header_menu_html.label",
+        "info": "t:settings_schema.generic.settings.header_menu_html.info",
+        "rows": 6,
+        "placeholder": "<a href='#'> title </a>"
+      },
+      {
+        "id": "footer_menu_html",
+        "type": "html",
+        "label": "t:settings_schema.generic.settings.footer_menu_html.label",
+        "info": "t:settings_schema.generic.settings.footer_menu_html.info",
+        "rows": 6,
+        "placeholder": "<a href='#'> title </a>"
+      },
+      {
+        "id": "features_one",
+        "type": "html",
+        "label": "t:settings_schema.generic.settings.features_one.label",
+        "info": "t:settings_schema.generic.settings.features_one.info",
+        "rows": 6,
+        "placeholder": "<div>...</div>"
+      },
+      {
+        "id": "features_two",
+        "type": "html",
+        "label": "t:settings_schema.generic.settings.features_two.label",
+        "info": "t:settings_schema.generic.settings.features_two.info",
+        "rows": 6,
+        "placeholder": "<div>...</div>"
+      }
+    ]
+  },
+  {
+    "name": "t:settings_schema.generic.head_title",
+    "settings": [
+      {
+        "id": "head_html",
+        "type": "html",
+        "label": "t:settings_schema.generic.settings.head_html.label",
+        "info": "t:settings_schema.generic.settings.head_html.info",
+        "rows": 10,
+        "placeholder": "t:settings_schema.generic.settings.head_html.placeholder"
+      }
+    ]
+  }
+]
