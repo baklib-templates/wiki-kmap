@@ -5,7 +5,7 @@
 <main class="flex flex-row bg-gray-100">
 
   {% if site.settings.is_allow_aside %}
-    {% render 'aside', page: page %}
+    {%# render 'aside', page: page %}
   {% endif  %}
 
   <div class="flex-1">
@@ -18,11 +18,11 @@
           class="w-full px-4 pt-6 pb-8 space-y-6 bg-white rounded-md shadow-sm shadow-gray-200 lg:pb-10 lg:pt-10 lg:px-6">
           <img src="{{ page.settings.hero_image_url | default: default_hero }}" alt="{{site.name}} image cover" class="object-cover w-full rounded-lg shadow lg:shadow-lg max-h-96">
           <div class="max-w-screen-md pt-6 mx-auto text-center">
-            <h2 class="mb-3 text-xl font-semibold text-gray-800 lg:text-2xl">{{ page.settings.slogan }}</h2>
+            <h2 class="mb-3 text-2xl sm:text-3xl lg:text-4xl font-semibold text-gray-800">{{ page.settings.slogan }}</h2>
             <p class="text-sm text-gray-700">{{ page.settings.description }}</p>
           </div>
 
-          <div class="grid grid-cols-1 gap-4 md:gap-6 lg:grid-cols-3 md:grid-cols-2 xl:grid-cols-5">
+          <div class="grid grid-cols-2 gap-4 md:gap-6 sm:grid-cols-3 md:grid-cols-4 xl:grid-cols-6">
             {% for item in card_pages %}
               <div class="flex flex-col items-center justify-center px-4 pt-6 pb-8 lg:px-6 lg:pt-8 lg:pb-10">
                 {% if item.settings.icon %}
@@ -40,18 +40,7 @@
             {% endfor %}
             
           </div>
-          {% if page.settings.features_html %}
-            {{ page.settings.features_html }}
-          {% else %}
-            <div class="text-center">
-              <h2 class="text-xl font-semibold text-center text-gray-800 lg:text-2xl">Want to work for us?</h2>
-              <p class="mt-2 text-sm text-center text-gray-700">When, while the lovely valley teems with vapour around me
-              </p>
-              <a href=""
-                class="inline-flex self-center px-4 py-3 mt-6 text-sm font-semibold leading-4 transition-colors duration-300 bg-primary rounded-md hover:bg-primary-700 text-primary-50">
-                Contact with our Support</a>
-            </div>
-          {% endif %}
+          {% render 'features_one', page: page %}
         </article>
       </div>
 

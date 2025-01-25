@@ -5,7 +5,7 @@
 <main class="flex flex-row min-h-screen bg-gray-100">
 
   {% if site.settings.is_allow_aside %}
-    {% render 'aside', page: page %}
+    {%# render 'aside', page: page %}
   {% endif  %}
 
   <div class="flex-1">
@@ -26,8 +26,8 @@
                 </a>
               {% endfor %}
             </div>
-            <h2 class="text-xl font-semibold text-gray-800 lg:text-2xl">{{ page.settings.slogan }}</h2>
-            <p class="text-gray-700">{{ page.settings.description }}</p>
+            <h2 class="text-2xl sm:text-3xl lg:text-4xl font-semibold text-gray-800">{{ page.settings.slogan }}</h2>
+            <p class="text-gray-600">{{ page.settings.description }}</p>
           </div>
         </div>
 
@@ -86,42 +86,9 @@
           </div>
         {% endpaginate_tag %}
 
-        <div class="px-6 py-8 bg-gray-100 rounded-md lg:py-12">
-          {% if page.settings.features_html %}
-            {{ page.settings.features_html }}
-          {% else %}
-            <form action="#">
-              <div class="max-w-2xl">
-                <span class="mb-4 text-lg font-semibold text-gray-800">Newsletter</span>
-                <p class="text-gray-700">A wonderful serenity has taken possession of my entire soul, like these sweet
-                  mornings of spring which I enjoy with my whole heart. I am alone, and feel the charm of existence in
-                  this spot, which was created for the bliss of souls like mine.</p>
-              </div>
-              <div class="grid items-end grid-cols-1 gap-3 mt-6 md:gap-6 md:grid-cols-3">
-                <div class="space-y-2">
-                  <div class="w-full pt-1">
-                    <label for="title" class="block text-sm font-semibold text-gray-700">Name</label>
-                  </div>
-                  <div class="flex-1">
-                    <input type="text" name="title" id="title" value="" placeholder="Enter your name"
-                      class="w-full text-sm border-gray-300 rounded-md">
-                  </div>
-                </div>
-                <div class="space-y-2">
-                  <div class="w-full pt-1">
-                    <label for="email" class="block text-sm font-semibold text-gray-700">Email</label>
-                  </div>
-                  <div class="flex-1">
-                    <input type="email" name="email" id="email" value="" placeholder="Email address"
-                      class="w-full text-sm border-gray-300 rounded-md">
-                  </div>
-                </div>
-                <button
-                  class="px-4 py-4 text-sm font-semibold leading-4 text-center transition-colors duration-300 bg-blue-600 rounded-md hover:bg-blue-700 text-blue-50">
-                  Subscribe <span class="hidden lg:inline">to our newsletter</span>
-                </button>
-              </div>
-            </form>
+        <div class="">
+          {% if page.settings.features_one %}
+            {{ page.settings.features_one }}
           {% endif %}
         </div>
       </div>

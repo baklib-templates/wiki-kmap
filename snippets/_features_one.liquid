@@ -1,0 +1,11 @@
+{% if page.settings.features_one %}
+  {{ page.settings.features_one }}
+{% else %}
+  <div class="text-center">
+    <h2 class="text-xl font-semibold text-center text-gray-800 lg:text-2xl">Want to work for us?</h2>
+    <p class="mt-2 text-sm text-center text-gray-700">这个地方的内容块由 [应用设置]--[界面展示]--[自定义 HTML块 features_one ] 定义的 HTML 代码。</p>
+    <a href=""
+      class="inline-flex self-center px-4 py-3 mt-6 text-sm font-semibold leading-4 transition-colors duration-300 bg-primary rounded-md hover:bg-primary-700 text-primary-50">
+      Contact with our Support</a>
+  </div>
+{% endif %}
